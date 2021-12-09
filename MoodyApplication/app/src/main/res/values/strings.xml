@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">MoodyApplication</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_email"> Email Address</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">Login</string>
+    <string name="no_account">You Do’t have an account?</string>
+    <string name="create_account">create an account</string>
+    <string name="register_email"> Email Address</string>
+    <string name="register_password">Password</string>
+    <string name="register_button">Sign Up</string>
+    <string name="go_back">Go Back</string>
+    <string name="song_name">name of song</string>
+    <string name="song_description">song description</string>
+    <string name="_0_00">0:00</string>
+    <string name="_1_00">-0:00</string>
+    <string name="playbutton">ToggleButton</string>
+    <string name="off" />
+    <string name="on" />
+    <string name="togglebutton">ToggleButton</string>
+    <string name="nofavorite" />
+    <string name="isfavorite" />
+</resources>

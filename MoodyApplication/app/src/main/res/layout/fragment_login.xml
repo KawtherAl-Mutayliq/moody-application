@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0C1017"
+    tools:context=".view.identity.LoginFragment">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="195dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="88dp"
+        android:src="@drawable/moody"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="543dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <EditText
+            android:id="@+id/login_emailedittext"
+            android:layout_width="316dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="45dp"
+            android:background="@drawable/buttonshape"
+            android:ems="10"
+            android:hint="@string/login_email"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:textColor="@color/white66"
+            android:textColorHint="@color/white66" />
+
+        <EditText
+            android:id="@+id/loginpassword_edittext"
+            android:layout_width="316dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="45dp"
+            android:background="@drawable/buttonshape"
+            android:ems="10"
+            android:hint="@string/login_password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textColor="@color/white66"
+            android:textColorHint="@color/white66" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login_button"
+            android:layout_width="135dp"
+            android:layout_height="62dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/outbuttonstyle"
+            android:text="@string/login_button"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="27sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:text="@string/no_account"
+            android:textColor="@color/white"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/create_account_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/create_account"
+            android:textColor="@color/white"
+            android:textSize="19sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

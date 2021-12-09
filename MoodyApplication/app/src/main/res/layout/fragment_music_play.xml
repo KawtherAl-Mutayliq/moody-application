@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black1"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".view.main.MusicPlayFragment">
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="360dp"
+        android:layout_height="260dp"
+        android:scaleType="center"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/song_name"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/song_description"
+        android:textColor="@color/white" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageButton
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="60dp"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@drawable/ic_baseline_fast_rewind_24"/>
+
+        <androidx.appcompat.widget.AppCompatToggleButton
+            android:id="@+id/toggleButton2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/playbutton"
+            android:backgroundTint="@color/red"
+            android:text="@string/playbutton"
+            android:textOff="@string/off"
+            android:textOn="@string/on" />
+        <ImageButton
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="60dp"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@drawable/ic_baseline_fast_forward_24"/>
+    </LinearLayout>
+
+    <SeekBar
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="@string/_0_00"
+            android:textColor="@color/white70" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="270dp"
+            android:text="@string/_1_00"
+            android:textColor="@color/white70" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
