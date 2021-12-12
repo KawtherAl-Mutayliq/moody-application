@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0C1017"
+    android:background="#313131"
     tools:context=".view.identity.RegisterFragment">
 
     <ImageView
@@ -14,7 +14,7 @@
         android:layout_height="68dp"
 
         android:layout_marginTop="88dp"
-        android:src="@drawable/moody"
+        android:src="@drawable/applogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

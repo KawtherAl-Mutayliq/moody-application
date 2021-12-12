@@ -20,4 +20,7 @@
     <string name="togglebutton">ToggleButton</string>
     <string name="nofavorite" />
     <string name="isfavorite" />
+    <string name="who_your_mood_now">Who Your Mood now</string>
+    <string name="search">Search</string>
+    <string name="logout">logout</string>
 </resources>

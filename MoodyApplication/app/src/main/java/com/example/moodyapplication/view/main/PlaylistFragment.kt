@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.moodyapplication.databinding.FragmentPlaylistBinding
-import com.example.moodyapplication.view.adapter.PageAdapter
+
 
 class PlaylistFragment : Fragment() {
 
@@ -22,7 +22,7 @@ class PlaylistFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.viewPager2.adapter = PageAdapter(childFragmentManager)
+
     }
 
 }

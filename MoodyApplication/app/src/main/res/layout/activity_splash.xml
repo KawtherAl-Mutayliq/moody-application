@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0C1017"
+    android:background="#313131"
     tools:context=".view.main.SplashActivity">
 
     <ImageView
@@ -15,5 +15,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/moody" />
+        app:srcCompat="@drawable/applogo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
