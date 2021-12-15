@@ -2,6 +2,8 @@ package com.example.moodyapplication.view.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.example.moodyapplication.R
 import com.example.moodyapplication.databinding.ActivityMainBinding
 import com.example.moodyapplication.view.adapter.FragmentAdapter
@@ -41,8 +43,24 @@ class MainActivity : AppCompatActivity() {
                     tab.setIcon(R.drawable.workout)
                     tab.text = "workout"
                 }
+                5 -> {
+                    tab.setIcon(R.drawable.ic_baseline_favorite_24)
+                    tab.text = "favorite"
+                }
             }
         }.attach()
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+       menuInflater.inflate(R.menu.actionbar, menu)
+        return true
+    }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when(item.itemId){
+//            R.id.search_item
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
 }

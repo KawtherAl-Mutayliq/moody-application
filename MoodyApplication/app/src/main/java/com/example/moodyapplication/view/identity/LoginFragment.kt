@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.moodyapplication.R
+import com.example.moodyapplication.database.DataBase
 import com.example.moodyapplication.databinding.FragmentLoginBinding
 
 
@@ -23,7 +24,17 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.loginButton.setOnClickListener {
+
+
+        }
+
+        binding.createAccountTextview.setOnClickListener {
+            requireActivity().supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.register_layout, RegisterFragment())
+                .commit()
+        }
     }
-
-
 }

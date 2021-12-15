@@ -17,10 +17,15 @@
     <string name="playbutton">ToggleButton</string>
     <string name="off" />
     <string name="on" />
-    <string name="togglebutton">ToggleButton</string>
+    <string name="optionbutton">ToggleButton</string>
     <string name="nofavorite" />
     <string name="isfavorite" />
     <string name="who_your_mood_now">Who Your Mood now</string>
     <string name="search">Search</string>
     <string name="logout">logout</string>
+    <string name="favorite">favorite</string>
+    <string name="share">Share ...</string>
+    <string name="favorite_recyclerview">Favorite</string>
+    <string name="songName">TextView</string>
+    <string name="songDes">TextView</string>
 </resources>

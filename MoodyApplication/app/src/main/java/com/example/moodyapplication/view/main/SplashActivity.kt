@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import com.example.moodyapplication.R
+import com.example.moodyapplication.repository.ApiServiceRepository
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        ApiServiceRepository.init(this)
         supportActionBar!!.hide()
 
         val intent = Intent(this, MainActivity::class.java)
@@ -20,9 +22,11 @@ class SplashActivity : AppCompatActivity() {
 
             override fun onFinish() {
                 startActivity(intent)
+                finish()
             }
 
         }
         timer.start()
     }
+
 }

@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
     android:background="#525252"
-    android:layout_height="wrap_content">
+    android:backgroundTint="@color/grey2"
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:orientation="horizontal"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="10dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
@@ -22,9 +23,12 @@
             app:cardCornerRadius="5dp">
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/music_imageview"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:cropToPadding="false"
+                android:scaleType="centerCrop"
                 tools:srcCompat="@tools:sample/avatars" />
         </androidx.cardview.widget.CardView>
 
@@ -34,7 +38,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/name_textView"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -42,7 +46,7 @@
                 android:textColor="@color/white" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/arts_textView"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -51,23 +55,12 @@
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/menu_imagbutton"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="5dp"
-            android:backgroundTint="@android:color/transparent"
-            app:srcCompat="@drawable/ic_baseline_share_24" />
-
-        <ToggleButton
-            android:id="@+id/toggleButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/favoritebutton"
-            android:text="@string/togglebutton"
-            android:textOff="@string/nofavorite"
-            android:textOn="@string/isfavorite" />
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ic_baseline_more_vert_24" />
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
