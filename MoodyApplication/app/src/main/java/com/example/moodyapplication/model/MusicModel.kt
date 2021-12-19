@@ -1,8 +1,11 @@
 package com.example.moodyapplication.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class MusicModel(
     @SerializedName("description")
     val description: String,
@@ -18,4 +21,4 @@ data class MusicModel(
     val type: String,
     @SerializedName("userId")
     val userId: String
-)
+) : Parcelable

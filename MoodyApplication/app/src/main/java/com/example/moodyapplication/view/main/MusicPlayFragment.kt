@@ -89,12 +89,6 @@ class MusicPlayFragment : Fragment(){
         binding.pauseButton.isVisible = false
     }
 
-
-        val runnable: Runnable = Runnable(){
-
-        }
-
-
     companion object {
         @JvmStatic
         fun newInstance(name: String, des: String, photo:String, music: String) =

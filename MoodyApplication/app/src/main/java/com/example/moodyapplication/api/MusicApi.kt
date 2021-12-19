@@ -3,7 +3,6 @@ package com.example.moodyapplication.api
 import com.example.moodyapplication.model.MusicModel
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Query
 
 interface MusicApi {
     @GET("/moody")

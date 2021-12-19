@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
-import com.example.moodyapplication.model.MusicModel
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
@@ -13,7 +12,9 @@ import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.example.moodyapplication.R
 import com.example.moodyapplication.databinding.MusicItemLayoutBinding
- class SadMoodAdapter(val context: Context) :
+import com.example.moodyapplication.model.MusicModel
+
+class SadMoodAdapter(val context: Context) :
     RecyclerView.Adapter<SadMoodAdapter.SadMoodHolder>() {
 
     val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MusicModel>(){

@@ -18,7 +18,6 @@ class PlaylistFragment : Fragment() {
     private lateinit var musicAdapter : MusicAdapter
     private val musicViewModel: PlaylistViewModel by activityViewModels()
 
-
     private var musicList = listOf<MusicModel>()
 
     private lateinit var binding: FragmentPlaylistBinding

@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.moodyapplication.databinding.FragmentSadMoodBinding
-import com.example.moodyapplication.model.MusicModel
 import com.example.moodyapplication.view.adapter.SadMoodAdapter
 import com.example.moodyapplication.view.main.viewmodel.SadMoodViewModel
 
