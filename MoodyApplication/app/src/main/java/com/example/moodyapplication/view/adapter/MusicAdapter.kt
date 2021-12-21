@@ -2,6 +2,7 @@ package com.example.moodyapplication.view.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -71,13 +72,16 @@ class MusicAdapter(val context: Context , val viewModel: PlaylistViewModel) :
             val position = adapterPosition + 1
 
             itemView.setOnClickListener {
-                viewModel.selectedLiveData.postValue(item)
 
-                val list = viewModel.musicArrayList
+                viewModel.musicArrayList.postValue(differ.currentList)
+
                 val intent = Intent(context , MusicPlayActivity::class.java)
-                val data = Gson().toJson(item)
 
-                intent.putExtra("musicModel", list)
+                intent.putExtra("name", item.name)
+                intent.putExtra("description", item.description)
+                intent.putExtra("photo", item.photo)
+                intent.putExtra("music", item.music)
+                intent.putParcelableArrayListExtra("list",(ArrayList<Parcelable>(differ.currentList)))
                 intent.putExtra("position" , position)
 
                 context.startActivity(intent)

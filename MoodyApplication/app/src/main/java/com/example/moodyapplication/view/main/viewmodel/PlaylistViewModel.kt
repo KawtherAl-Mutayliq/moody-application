@@ -16,7 +16,7 @@ class PlaylistViewModel: ViewModel() {
 
     val musicLiveData = MutableLiveData<List<MusicModel>>()
     val selectedLiveData = MutableLiveData<MusicModel>()
-    val musicArrayList = ArrayList<MusicModel>()
+    val musicArrayList = MutableLiveData<List<MusicModel>>()
     val musicErrorLiveData = MutableLiveData<String>()
 
     fun callMusic(){
