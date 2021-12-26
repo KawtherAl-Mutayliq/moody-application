@@ -1,5 +1,6 @@
 package com.example.moodyapplication.view.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Parcelable
@@ -61,6 +62,7 @@ class MusicAdapter(val context: Context , val viewModel: PlaylistViewModel) :
     inner class MusicHolder(val binding: MusicItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("ResourceAsColor")
         fun bind(item: MusicModel) {
             binding.nameTextView.text = item.name
             binding.artsTextView.text = item.description
@@ -69,13 +71,13 @@ class MusicAdapter(val context: Context , val viewModel: PlaylistViewModel) :
                 showPopupMenu(it)
             }
 
-            val position = adapterPosition + 1
+            val position = adapterPosition
 
             itemView.setOnClickListener {
 
                 viewModel.musicArrayList.postValue(differ.currentList)
 
-                val intent = Intent(context , MusicPlayActivity::class.java)
+                val intent= Intent(context , MusicPlayActivity::class.java)
 
                 intent.putExtra("name", item.name)
                 intent.putExtra("description", item.description)
@@ -85,6 +87,7 @@ class MusicAdapter(val context: Context , val viewModel: PlaylistViewModel) :
                 intent.putExtra("position" , position)
 
                 context.startActivity(intent)
+
             }
         }
     }

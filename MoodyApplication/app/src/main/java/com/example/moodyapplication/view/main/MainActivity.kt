@@ -1,9 +1,10 @@
 package com.example.moodyapplication.view.main
 
+import android.app.Notification.PRIORITY_DEFAULT
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
+import androidx.core.app.NotificationCompat
 import com.example.moodyapplication.R
 import com.example.moodyapplication.databinding.ActivityMainBinding
 import com.example.moodyapplication.view.adapter.FragmentAdapter
