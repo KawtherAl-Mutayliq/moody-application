@@ -13,7 +13,6 @@ import android.widget.SeekBar
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.example.moodyapplication.databinding.ActivityMusicPlayBinding
-import com.example.moodyapplication.model.MusicModel
 import java.io.IOException
 import kotlin.concurrent.thread
 import android.os.Build
@@ -24,6 +23,7 @@ import android.media.AudioAttributes
 import android.media.AudioFocusRequest
 import android.media.AudioManager.OnAudioFocusChangeListener
 import androidx.annotation.RequiresApi
+import com.example.moodyapplication.model.MusicModel
 
 
 private const val TAG = "MusicPlayActivity"
@@ -86,11 +86,11 @@ class MusicPlayActivity : AppCompatActivity() {
         val music = intent.getStringExtra("music")!!
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createChannel()
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            createChannel()
+//        }
 
-        createNotification.createNotification(this , list , position , list.size - 1)
+       // createNotification.createNotification(this , list , position , list.size - 1)
 
 
         initMediaPlayer(name , description , photo , music)
@@ -122,12 +122,10 @@ class MusicPlayActivity : AppCompatActivity() {
         }
 
         mediaPlayer.setOnCompletionListener{
-            binding.playButton.isVisible = true
-            binding.pauseButton.isVisible = false
+            next()
         }
 
         initializedSeekBar()
-        initializedVolumeSeekBar()
 
 
         binding.musicSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -212,22 +210,6 @@ class MusicPlayActivity : AppCompatActivity() {
 
             })
         }
-    }
-
-    private fun initializedVolumeSeekBar() {
-        binding.volumeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar? , progress: Int , fromUser: Boolean) {
-                if (fromUser) {
-                    val volumeNum = progress / 100.0f
-                    mediaPlayer.setVolume(volumeNum , volumeNum)
-                }
-            }
-
-            override fun onStartTrackingTouch(p0: SeekBar?) {}
-
-            override fun onStopTrackingTouch(p0: SeekBar?) {}
-
-        })
     }
 
     private fun play() {

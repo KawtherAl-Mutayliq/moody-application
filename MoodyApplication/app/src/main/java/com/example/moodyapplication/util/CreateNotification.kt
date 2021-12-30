@@ -91,8 +91,8 @@ class CreateNotification {
                 .addAction(R.drawable.ic_baseline_fast_rewind_black, "previous", null)
                .addAction(R.drawable.ic_baseline_fast_forward_black, "play", null)
                 .addAction(R.drawable.ic_baseline_play_arrow_black, "next", null)
-               .setStyle(androidx.media.app.NotificationCompat.MediaStyle()
-                   .setShowActionsInCompactView(1,2,3))
+//               .setStyle(androidx.media.app.NotificationCompat.MediaStyle()
+//                   .setShowActionsInCompactView(1,2,3))
                 .setShowWhen(false)
                 .build()
 

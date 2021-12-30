@@ -4,66 +4,66 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moodyapplication.R
 import com.example.moodyapplication.databinding.MusicItemLayoutBinding
-import com.example.moodyapplication.model.MusicModel
+import com.example.moodyapplication.model.FavoriteMusic
 import com.example.moodyapplication.view.main.MusicPlayActivity
-import com.example.moodyapplication.view.main.viewmodel.PlaylistViewModel
+import com.example.moodyapplication.view.main.viewmodel.FavoriteViewModel
 
-private const val TAG = "MusicAdapter"
+class FavoriteAdater(val context: Context, val viewModel: FavoriteViewModel) :
+    RecyclerView.Adapter<FavoriteAdater.FavoriteHolder>() {
 
-class MusicAdapter(val context: Context , val viewModel: PlaylistViewModel) :
-    RecyclerView.Adapter<MusicAdapter.MusicHolder>() {
-    val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MusicModel>() {
-        override fun areItemsTheSame(oldItem: MusicModel , newItem: MusicModel): Boolean {
+    val DIFF_CALLBACK = object : DiffUtil.ItemCallback<FavoriteMusic>() {
+        override fun areItemsTheSame(oldItem: FavoriteMusic , newItem: FavoriteMusic): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: MusicModel , newItem: MusicModel): Boolean {
+        override fun areContentsTheSame(oldItem: FavoriteMusic , newItem: FavoriteMusic): Boolean {
             return oldItem == newItem
         }
 
     }
     private val differ = AsyncListDiffer(this , DIFF_CALLBACK)
 
-    override fun onCreateViewHolder(parent: ViewGroup , viewType: Int): MusicHolder {
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup ,
+        viewType: Int
+    ): FavoriteHolder {
         val binding =
             MusicItemLayoutBinding.inflate(LayoutInflater.from(parent.context) , parent , false)
-        return MusicHolder(binding)
+        return FavoriteHolder(binding)
     }
 
-
-    override fun onBindViewHolder(holder: MusicHolder , position: Int) {
+    override fun onBindViewHolder(holder: FavoriteHolder , position: Int) {
         val item = differ.currentList[position]
         holder.bind(item)
-
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
 
-    fun sublist(list: List<MusicModel>) {
+    fun sublist(list: List<FavoriteMusic>) {
         differ.submitList(list)
     }
 
-    inner class MusicHolder(val binding: MusicItemLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+   inner class FavoriteHolder(val binding: MusicItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("ResourceAsColor")
-        fun bind(item: MusicModel) {
+        fun bind(item: FavoriteMusic) {
             binding.nameTextView.text = item.name
             binding.artsTextView.text = item.description
             Glide.with(context).load(item.photo).into(binding.musicImageview)
+
             binding.menuImagbutton.setOnClickListener {
                 showPopupMenu(it, item)
             }
@@ -84,34 +84,33 @@ class MusicAdapter(val context: Context , val viewModel: PlaylistViewModel) :
                 intent.putExtra("position" , position)
 
                 context.startActivity(intent)
-
-            }
-
-
-        }
-    }
-
-    private fun showPopupMenu(view: View, item: MusicModel) {
-        val popupMenu = PopupMenu(context , view)
-        popupMenu.inflate(R.menu.popupmenu)
-        popupMenu.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.share_item_view -> {
-                    val musicUrl = item.music
-                    val intent = Intent(Intent.ACTION_SEND)
-                    intent.type = "audio/*"
-                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                    context.startActivity(Intent.createChooser(intent , "share audio"))
-                    true
-                }
-                R.id.favorite_item_view -> {
-                   viewModel.addFavorite(item)
-
-                    true
-                }
-                else -> true
             }
         }
-        popupMenu.show()
+
+       @SuppressLint("NotifyDataSetChanged")
+       private fun showPopupMenu(view: View , item: FavoriteMusic) {
+           val popupMenu = PopupMenu(context , view)
+           popupMenu.inflate(R.menu.favoritepopup)
+           popupMenu.setOnMenuItemClickListener {
+               when (it.itemId) {
+                   R.id.share_favorite_item -> {
+                       val musicUrl = item.music
+                       val intent = Intent(Intent.ACTION_SEND)
+                       intent.type = "audio/*"
+                       intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                       context.startActivity(Intent.createChooser(intent , "share audio"))
+                       true
+                   }
+                   R.id.delete_favorite_item -> {
+                       viewModel.deleteFavorite(item)
+
+                       notifyItemRemoved(adapterPosition)
+                       true
+                   }
+                   else -> true
+               }
+           }
+           popupMenu.show()
+       }
     }
 }

@@ -4,9 +4,15 @@ import android.app.Notification.PRIORITY_DEFAULT
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import androidx.appcompat.widget.SearchView
 import androidx.core.app.NotificationCompat
+import androidx.core.view.MenuItemCompat
+import androidx.navigation.fragment.findNavController
 import com.example.moodyapplication.R
 import com.example.moodyapplication.databinding.ActivityMainBinding
+import com.example.moodyapplication.model.MusicModel
 import com.example.moodyapplication.view.adapter.FragmentAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -17,8 +23,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+
+        supportActionBar?.hide()
+
 
         adapter = FragmentAdapter(supportFragmentManager, lifecycle)
         binding.viewPager.adapter = adapter
@@ -50,18 +62,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }.attach()
-
     }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-       menuInflater.inflate(R.menu.actionbar, menu)
-        return true
-    }
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when(item.itemId){
-//            R.id.search_item
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
 }

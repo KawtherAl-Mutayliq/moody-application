@@ -1,76 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/register_layout"
+    android:id="@+id/login_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#313131"
     android:orientation="vertical"
-    tools:context=".view.identity.RegisterFragment">
+    tools:context=".view.identity.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="195dp"
         android:layout_height="68dp"
-
         android:layout_gravity="center"
         android:layout_marginTop="88dp"
         android:src="@drawable/applogo" />
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="573dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/register_emailedittext"
+            android:id="@+id/login_emailedittext"
             android:layout_width="316dp"
             android:layout_height="68dp"
             android:layout_marginStart="45dp"
             android:layout_marginTop="45dp"
             android:background="@drawable/buttonshape"
             android:ems="10"
-            android:hint="@string/register_email"
+            android:hint="@string/login_email"
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:textColor="@color/white66"
             android:textColorHint="@color/white66" />
 
         <EditText
-            android:id="@+id/registerpassword_edittext"
+            android:id="@+id/loginpassword_edittext"
             android:layout_width="316dp"
             android:layout_height="68dp"
             android:layout_marginStart="45dp"
             android:layout_marginTop="45dp"
             android:background="@drawable/buttonshape"
             android:ems="10"
-            android:hint="@string/register_password"
+            android:hint="@string/login_password"
             android:inputType="textPassword"
             android:padding="10dp"
             android:textColor="@color/white66"
             android:textColorHint="@color/white66" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/register_button"
+            android:id="@+id/login_button"
             android:layout_width="135dp"
             android:layout_height="62dp"
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
             android:background="@drawable/outbuttonstyle"
             android:gravity="center"
-            android:text="@string/register_button"
+            android:text="@string/login_button"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="27sp" />
 
         <TextView
-            android:id="@+id/goback_textView"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
-            android:text="@string/go_back"
+            android:text="@string/no_account"
             android:textColor="@color/white"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/create_account_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/create_account"
+            android:textColor="@color/red"
             android:textSize="19sp" />
     </LinearLayout>
 

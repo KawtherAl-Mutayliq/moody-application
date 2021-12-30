@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MoodyApplication"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".view.identity.IdentityActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.main.MusicPlayActivity"
             android:exported="false" />
         <activity
@@ -28,13 +31,17 @@
             android:name=".view.main.MainActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".view.identity.LoginActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".view.identity.RegisterActivity"
+            android:exported="true" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-<!--        <receiver android:name=".util.NotificationActionService"/>-->
-<!--        <service android:name=".util.OnClearFromRecentService"/>-->
-
     </application>
 
 </manifest>

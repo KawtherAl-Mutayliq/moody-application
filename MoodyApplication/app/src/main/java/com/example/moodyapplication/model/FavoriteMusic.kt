@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class MusicModel(
+data class FavoriteMusic(
     @SerializedName("description")
     val description: String,
     @SerializedName("id")
@@ -18,5 +18,7 @@ data class MusicModel(
     @SerializedName("photo")
     val photo: String,
     @SerializedName("type")
-    val type: String
+    val type: String,
+    @SerializedName("userId")
+    val userId: String
 ) : Parcelable

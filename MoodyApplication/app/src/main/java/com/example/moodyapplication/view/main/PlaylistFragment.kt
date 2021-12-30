@@ -1,11 +1,12 @@
 package com.example.moodyapplication.view.main
 
 import android.os.Bundle
+import android.view.*
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.example.moodyapplication.R
 import com.example.moodyapplication.databinding.FragmentPlaylistBinding
 import com.example.moodyapplication.model.MusicModel
 import com.example.moodyapplication.view.adapter.MusicAdapter
@@ -39,6 +40,7 @@ class PlaylistFragment : Fragment() {
         observers()
         musicViewModel.callMusic()
 
+        binding
     }
 
     private fun observers(){
@@ -49,5 +51,5 @@ class PlaylistFragment : Fragment() {
             binding.playlistRecyclerView.animate().alpha(1f)
         })
     }
-
 }
+
