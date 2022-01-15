@@ -4,6 +4,7 @@
 
 ## Technologies used:
 - Figma 
+- MockAPI
 - Android Studio 
 - Kotlin code
 - Android Emulator
