@@ -8,7 +8,6 @@ import com.example.moodyapplication.model.FavoriteMusic
 import com.example.moodyapplication.model.MusicModel
 import com.example.moodyapplication.repository.ApiServiceRepository
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -18,9 +17,11 @@ class PlaylistViewModel: ViewModel() {
     private val apiServiceRepository = ApiServiceRepository.get()
 
     val musicLiveData = MutableLiveData<List<MusicModel>>()
-    val selectedLiveData = MutableLiveData<MusicModel>()
     val musicArrayList = MutableLiveData<List<MusicModel>>()
+    val updateLiveData = MutableLiveData<String>()
+    val updateErrorLiveData = MutableLiveData<String>()
     val musicErrorLiveData = MutableLiveData<String>()
+
 
     fun callMusic(){
         viewModelScope.launch(Dispatchers.IO) {
@@ -61,6 +62,25 @@ class PlaylistViewModel: ViewModel() {
                 }
 
             } catch (e: Exception) {
+                Log.d(TAG , " exception ${e.message.toString()}")
+                musicErrorLiveData.postValue(e.message.toString())
+            }
+        }
+    }
+
+
+    fun update(musicModel: MusicModel){
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response = apiServiceRepository.updateMusicName(musicModel.id, musicModel)
+                if (response.isSuccessful) {
+                    response.body()?.run {
+                        updateLiveData.postValue("response successful")
+                        callMusic()
+                        Log.d(TAG , "success response ${response.message()}")
+                    }
+                }
+            }catch (e: Exception){
                 Log.d(TAG , " exception ${e.message.toString()}")
                 musicErrorLiveData.postValue(e.message.toString())
             }

@@ -1,16 +1,14 @@
-package com.example.moodyapplication.view.main
+package com.example.moodyapplication.view.main.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import com.example.moodyapplication.R
 import com.example.moodyapplication.databinding.FragmentWorkoutMoodBinding
-import com.example.moodyapplication.view.adapter.RomanceMusicAdapter
 import com.example.moodyapplication.view.adapter.WorkoutMusicAdapter
-import com.example.moodyapplication.view.main.viewmodel.RomanceMusicViewModel
 import com.example.moodyapplication.view.main.viewmodel.WorkoutMusicViewModel
 
 class WorkoutMoodFragment : Fragment() {
@@ -33,7 +31,7 @@ class WorkoutMoodFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        workoutMoodAdapter = WorkoutMusicAdapter(requireActivity())
+        workoutMoodAdapter = WorkoutMusicAdapter(requireActivity(), workoutMoodViewModel)
         binding.workoutRecyclerview.adapter = workoutMoodAdapter
 
         observers()
@@ -45,6 +43,12 @@ class WorkoutMoodFragment : Fragment() {
             binding.workoutProgressBar.animate().alpha(0f).duration = 1000
             workoutMoodAdapter.sublist(it)
             binding.workoutRecyclerview.animate().alpha(1f)
+        })
+
+        workoutMoodViewModel.workoutMusicErrorLiveData.observe(viewLifecycleOwner, {
+            it?.let {
+                Toast.makeText(requireActivity() , it , Toast.LENGTH_SHORT).show()
+            }
         })
     }
 }

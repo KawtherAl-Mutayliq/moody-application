@@ -12,8 +12,9 @@ import java.lang.Exception
 
 private const val TAG = "WorkoutMusicViewModel"
 class WorkoutMusicViewModel : ViewModel() {
-    private val apiServiceRepository = ApiServiceRepository.get()
 
+    private val apiServiceRepository = ApiServiceRepository.get()
+    val musicArrayList = MutableLiveData<List<MusicModel>>()
     val workoutMusicLiveData = MutableLiveData<List<MusicModel>>()
     val workoutMusicErrorLiveData = MutableLiveData<String>()
 

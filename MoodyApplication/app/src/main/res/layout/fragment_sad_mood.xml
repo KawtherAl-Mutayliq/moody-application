@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#313131"
-    tools:context=".view.main.SadMoodFragment">
+    tools:context=".view.main.fragments.SadMoodFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sadmood_recyclerview"

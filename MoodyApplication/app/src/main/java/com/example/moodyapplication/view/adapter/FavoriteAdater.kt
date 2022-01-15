@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide
 import com.example.moodyapplication.R
 import com.example.moodyapplication.databinding.MusicItemLayoutBinding
 import com.example.moodyapplication.model.FavoriteMusic
-import com.example.moodyapplication.view.main.MusicPlayActivity
+import com.example.moodyapplication.view.main.activities.MusicPlayActivity
 import com.example.moodyapplication.view.main.viewmodel.FavoriteViewModel
 
 class FavoriteAdater(val context: Context, val viewModel: FavoriteViewModel) :
@@ -94,17 +94,22 @@ class FavoriteAdater(val context: Context, val viewModel: FavoriteViewModel) :
            popupMenu.setOnMenuItemClickListener {
                when (it.itemId) {
                    R.id.share_favorite_item -> {
-                       val musicUrl = item.music
+
+                       val link = item.music
                        val intent = Intent(Intent.ACTION_SEND)
-                       intent.type = "audio/*"
-                       intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                       context.startActivity(Intent.createChooser(intent , "share audio"))
+                       intent.type = "text/plain"
+                       intent.putExtra(Intent.EXTRA_TEXT, link)
+                       context.startActivity(Intent.createChooser(intent, "Share Link"))
+
                        true
                    }
                    R.id.delete_favorite_item -> {
-                       viewModel.deleteFavorite(item)
 
-                       notifyItemRemoved(adapterPosition)
+                       val favoriteMusic = mutableListOf<FavoriteMusic>()
+                       favoriteMusic.addAll(differ.currentList)
+                       favoriteMusic.removeAt(position)
+                       viewModel.deleteFavorite(item)
+                       differ.submitList(favoriteMusic)
                        true
                    }
                    else -> true

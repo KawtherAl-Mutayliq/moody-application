@@ -3,6 +3,7 @@ package com.example.moodyapplication.view.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +15,10 @@ import com.bumptech.glide.Glide
 import com.example.moodyapplication.R
 import com.example.moodyapplication.databinding.MusicItemLayoutBinding
 import com.example.moodyapplication.model.MusicModel
+import com.example.moodyapplication.view.main.activities.MusicPlayActivity
+import com.example.moodyapplication.view.main.viewmodel.RomanceMusicViewModel
 
-class RomanceMusicAdapter(val context: Context) :
+class RomanceMusicAdapter(val context: Context, val viewModel: RomanceMusicViewModel) :
     RecyclerView.Adapter<RomanceMusicAdapter.RomanceMusicHolder>() {
 
     val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MusicModel>(){
@@ -57,22 +60,45 @@ class RomanceMusicAdapter(val context: Context) :
             binding.artsTextView.text = item.description
             Glide.with(context).load(item.photo).into(binding.musicImageview)
             binding.menuImagbutton.setOnClickListener {
-                showPopupMenu(it)
+                showPopupMenu(it, item)
+            }
+
+
+            val position = adapterPosition
+
+            itemView.setOnClickListener {
+
+                viewModel.musicArrayList.postValue(differ.currentList)
+
+                val intent= Intent(context , MusicPlayActivity::class.java)
+
+                intent.putExtra("name", item.name)
+                intent.putExtra("description", item.description)
+                intent.putExtra("photo", item.photo)
+                intent.putExtra("music", item.music)
+                intent.putParcelableArrayListExtra("list",(ArrayList<Parcelable>(differ.currentList)))
+                intent.putExtra("position" , position)
+
+                context.startActivity(intent)
+
             }
         }
     }
-    private fun showPopupMenu(view: View) {
+    private fun showPopupMenu(view: View, item: MusicModel) {
         val popupMenu = PopupMenu(context,view )
-        popupMenu.inflate(R.menu.popupmenu)
+        popupMenu.inflate(R.menu.mainpopmenu)
         popupMenu.setOnMenuItemClickListener {
             when(it.itemId){
-                R.id.share_item_view ->{
+                R.id.main_share_item_view ->{
+
+                    val link = item.music
                     val intent = Intent(Intent.ACTION_SEND)
                     intent.type = "text/plain"
-                    context.startActivity(intent)
+                    intent.putExtra(Intent.EXTRA_TEXT, link)
+                    context.startActivity(Intent.createChooser(intent, "Share Link"))
                     true
                 }
-                R.id.favorite_item_view ->{
+                R.id.main_favorite_item_view ->{
                     true
                 }
                 else -> true

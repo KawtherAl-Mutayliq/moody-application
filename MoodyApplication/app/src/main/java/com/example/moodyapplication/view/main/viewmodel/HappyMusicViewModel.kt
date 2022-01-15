@@ -14,7 +14,7 @@ private const val TAG = "HappyMusicViewModel"
 
 class HappyMusicViewModel : ViewModel() {
     private val apiServiceRepository = ApiServiceRepository.get()
-
+    val musicArrayList = MutableLiveData<List<MusicModel>>()
     val happyMusicLiveData = MutableLiveData<List<MusicModel>>()
     val happyMusicErrorLiveData = MutableLiveData<String>()
 

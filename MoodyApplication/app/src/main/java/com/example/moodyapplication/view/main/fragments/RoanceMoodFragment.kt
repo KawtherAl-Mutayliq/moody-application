@@ -1,16 +1,14 @@
-package com.example.moodyapplication.view.main
+package com.example.moodyapplication.view.main.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import com.example.moodyapplication.R
 import com.example.moodyapplication.databinding.FragmentRoanceMoodBinding
-import com.example.moodyapplication.view.adapter.HappyMusicAdapter
 import com.example.moodyapplication.view.adapter.RomanceMusicAdapter
-import com.example.moodyapplication.view.main.viewmodel.HappyMusicViewModel
 import com.example.moodyapplication.view.main.viewmodel.RomanceMusicViewModel
 
 class RoanceMoodFragment : Fragment() {
@@ -32,7 +30,7 @@ class RoanceMoodFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        romanceMoodAdapter = RomanceMusicAdapter(requireActivity())
+        romanceMoodAdapter = RomanceMusicAdapter(requireActivity(), romanceMoodViewModel)
         binding.romanceRecyclerview.adapter = romanceMoodAdapter
 
         observers()
@@ -45,6 +43,12 @@ class RoanceMoodFragment : Fragment() {
             binding.romanceProgressBar.animate().alpha(0f).duration = 1000
             romanceMoodAdapter.sublist(it)
             binding.romanceRecyclerview.animate().alpha(1f)
+        })
+
+        romanceMoodViewModel.romanceMusicErrorLiveData.observe(viewLifecycleOwner, {
+            it?.let {
+                Toast.makeText(requireActivity() , it , Toast.LENGTH_SHORT).show()
+            }
         })
     }
 }

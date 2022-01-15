@@ -1,25 +1,21 @@
-package com.example.moodyapplication.view.main
+package com.example.moodyapplication.view.main.activities
 
-import android.app.Notification.PRIORITY_DEFAULT
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import androidx.appcompat.widget.SearchView
-import androidx.core.app.NotificationCompat
-import androidx.core.view.MenuItemCompat
-import androidx.navigation.fragment.findNavController
 import com.example.moodyapplication.R
 import com.example.moodyapplication.databinding.ActivityMainBinding
 import com.example.moodyapplication.model.MusicModel
 import com.example.moodyapplication.view.adapter.FragmentAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: FragmentAdapter
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,15 +23,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
-        supportActionBar?.hide()
-
-
-        adapter = FragmentAdapter(supportFragmentManager, lifecycle)
+        adapter = FragmentAdapter(supportFragmentManager , lifecycle)
         binding.viewPager.adapter = adapter
-        TabLayoutMediator(binding.tabLayout, binding.viewPager){ tab , position ->
-            when(position){
+        TabLayoutMediator(binding.tabLayout , binding.viewPager) { tab , position ->
+            when (position) {
                 0 -> {
                     tab.setIcon(R.drawable.ic_baseline_music_note_24)
                     tab.text = "music"

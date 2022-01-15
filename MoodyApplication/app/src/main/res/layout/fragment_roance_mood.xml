@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#313131"
-    tools:context=".view.main.RoanceMoodFragment">
+    tools:context=".view.main.fragments.RoanceMoodFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/romance_recyclerview"

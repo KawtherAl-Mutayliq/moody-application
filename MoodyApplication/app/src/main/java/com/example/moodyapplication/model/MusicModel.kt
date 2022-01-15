@@ -8,13 +8,13 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class MusicModel(
     @SerializedName("description")
-    val description: String,
+    var description: String,
     @SerializedName("id")
     val id: String,
     @SerializedName("music")
-    val music: String,
+    var music: String,
     @SerializedName("name")
-    val name: String,
+    var name: String,
     @SerializedName("photo")
     val photo: String,
     @SerializedName("type")

@@ -3,7 +3,7 @@ package com.example.moodyapplication.repository
 import android.content.Context
 import com.example.moodyapplication.api.MusicApi
 import com.example.moodyapplication.model.FavoriteMusic
-import com.google.firebase.auth.FirebaseAuth
+import com.example.moodyapplication.model.MusicModel
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
@@ -34,6 +34,7 @@ class ApiServiceRepository(context: Context) {
     suspend fun getFavorite() =retrofitFavorite.getMusicFavorite()
     suspend fun addFavorite(favoriteBody: FavoriteMusic) = retrofitApi.addFavorite(favoriteBody)
     suspend fun deleteFavorite(musicId: String) = retrofitApi.deleteFavorite(musicId)
+    suspend fun updateMusicName(id:String, musicModel: MusicModel) = retrofitApi.updateMusicName(id, musicModel)
 
     companion object{
         private var instance: ApiServiceRepository? = null

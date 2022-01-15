@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.moodyapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,14 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoodyApplication"
         android:usesCleartextTraffic="true">
+
         <activity
-            android:name=".view.identity.IdentityActivity"
+            android:name=".view.main.activities.MusicPlayActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.MusicPlayActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.main.SplashActivity"
+            android:name=".view.main.activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,8 +29,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.main.MainActivity"
-            android:exported="true" />
+            android:name=".view.main.activities.MainActivity"
+            android:exported="true"
+            android:label="Moody"/>
 
         <activity
             android:name=".view.identity.LoginActivity"
@@ -42,6 +44,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-    </application>
 
+    </application>
 </manifest>

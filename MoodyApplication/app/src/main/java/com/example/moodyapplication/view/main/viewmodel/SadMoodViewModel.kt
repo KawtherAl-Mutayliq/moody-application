@@ -14,7 +14,7 @@ private const val TAG = "SadMoodViewModel"
 class SadMoodViewModel : ViewModel() {
 
     private val apiServiceRepository = ApiServiceRepository.get()
-
+    val musicArrayList = MutableLiveData<List<MusicModel>>()
     val musicLiveData = MutableLiveData<List<MusicModel>>()
     val musicErrorLiveData = MutableLiveData<String>()
 

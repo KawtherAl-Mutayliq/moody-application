@@ -1,4 +1,4 @@
-package com.example.moodyapplication.view.main
+package com.example.moodyapplication.view.main.activities
 
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
@@ -22,8 +22,11 @@ import android.media.AudioManager
 import android.media.AudioAttributes
 import android.media.AudioFocusRequest
 import android.media.AudioManager.OnAudioFocusChangeListener
+import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.moodyapplication.model.MusicModel
+import java.lang.Exception
 
 
 private const val TAG = "MusicPlayActivity"
@@ -44,8 +47,6 @@ class MusicPlayActivity : AppCompatActivity() {
 
     lateinit var list: MutableList<MusicModel>
 
-    private lateinit var notificationManager: NotificationManager
-    private val createNotification = CreateNotification()
 
     private var audioFocusRequest: Int = 0
 
@@ -56,18 +57,21 @@ class MusicPlayActivity : AppCompatActivity() {
 
     // media player is handled according to the
     // change in the focus which Android system grants for
-    var audioFocusChangeListener =
+    private var audioFocusChangeListener =
         OnAudioFocusChangeListener { focusChange ->
-            if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-                mediaPlayer.start()
-            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
-                mediaPlayer.pause()
-                mediaPlayer.seekTo(0)
-            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-                mediaPlayer.release()
+            when (focusChange) {
+                AudioManager.AUDIOFOCUS_GAIN -> {
+                    mediaPlayer.start()
+                }
+                AudioManager.AUDIOFOCUS_LOSS_TRANSIENT -> {
+                    mediaPlayer.pause()
+                    mediaPlayer.seekTo(0)
+                }
+                AudioManager.AUDIOFOCUS_LOSS -> {
+                    mediaPlayer.release()
+                }
             }
         }
-
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,16 +89,8 @@ class MusicPlayActivity : AppCompatActivity() {
         val photo = intent.getStringExtra("photo")!!
         val music = intent.getStringExtra("music")!!
 
-
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            createChannel()
-//        }
-
-       // createNotification.createNotification(this , list , position , list.size - 1)
-
-
         initMediaPlayer(name , description , photo , music)
-
+        initializedSeekBar()
 
         binding.pauseButton.setOnClickListener {
             pause()
@@ -112,6 +108,7 @@ class MusicPlayActivity : AppCompatActivity() {
         binding.closeButton.setOnClickListener {
             finish()
             mediaPlayer.stop()
+
         }
         binding.forwardButton.setOnClickListener {
             next()
@@ -122,11 +119,8 @@ class MusicPlayActivity : AppCompatActivity() {
         }
 
         mediaPlayer.setOnCompletionListener{
-            next()
+            pause()
         }
-
-        initializedSeekBar()
-
 
         binding.musicSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar? , progress: Int , fromUser: Boolean) {
@@ -168,48 +162,42 @@ class MusicPlayActivity : AppCompatActivity() {
 
     }
 
-    private fun createChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel =
-                NotificationChannel(CHANNEL_ID , "KOD Dev" , NotificationManager.IMPORTANCE_LOW)
-            notificationManager = getSystemService(NotificationManager::class.java)
-            notificationManager.createNotificationChannel(channel)
-        }
-    }
-
-
     private fun initializedSeekBar() {
 
         binding.musicSeekBar.max = mediaPlayer.duration / 1000
-        thread {
 
             runOnUiThread(object : Runnable {
                 @SuppressLint("SetTextI18n")
                 override fun run() {
-                    val currentPosition = mediaPlayer.currentPosition / 1000
-                    binding.musicSeekBar.progress = currentPosition
+                    try {
 
-                    out = String.format(
-                        "%02d:%02d" ,
-                        binding.musicSeekBar.progress / 60 ,
-                        binding.musicSeekBar.progress % 60
-                    )
+                        val currentPosition = mediaPlayer.currentPosition / 1000
+                        binding.musicSeekBar.progress = currentPosition
 
-                    binding.startTime.text = out
+                        Log.d(TAG , "current position $currentPosition")
 
-                    difference = mediaPlayer.duration / 1000 - mediaPlayer.currentPosition / 1000
-                    out2 = String.format(
-                        "%02d:%02d" ,
-                        difference / 60 ,
-                        difference % 60
-                    )
+                        out = String.format(
+                            "%02d:%02d" ,
+                            binding.musicSeekBar.progress / 60 ,
+                            binding.musicSeekBar.progress % 60
+                        )
 
-                    binding.musicTime.text = "-$out2"
-                    handler.postDelayed(this , 1000)
+                        binding.startTime.text = out
+
+                        difference =
+                            mediaPlayer.duration / 1000 - mediaPlayer.currentPosition / 1000
+                        out2 = String.format(
+                            "%02d:%02d" ,
+                            difference / 60 ,
+                            difference % 60
+                        )
+                        binding.musicTime.text = "-$out2"
+                        handler.postDelayed(this , 1000)
+                    }catch (e : Exception){
+                        e.printStackTrace()
+                    }
                 }
-
             })
-        }
     }
 
     private fun play() {
@@ -268,8 +256,6 @@ class MusicPlayActivity : AppCompatActivity() {
         binding.nameOfsong.text = name
         binding.songDes.text = description
         Glide.with(this).load(photo).into(binding.musicImagView)
-
-        mediaPlayer.setVolume(0.5f , 0.5f)
 
         try {
             mediaPlayer.reset()

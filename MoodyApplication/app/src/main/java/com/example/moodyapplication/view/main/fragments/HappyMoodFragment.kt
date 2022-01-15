@@ -1,10 +1,11 @@
-package com.example.moodyapplication.view.main
+package com.example.moodyapplication.view.main.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.moodyapplication.databinding.FragmentHappyMoodBinding
 import com.example.moodyapplication.view.adapter.HappyMusicAdapter
@@ -30,7 +31,7 @@ class HappyMoodFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        happyMoodAdapter = HappyMusicAdapter(requireActivity())
+        happyMoodAdapter = HappyMusicAdapter(requireActivity(), happyMoodViewModel)
         binding.happyRecyclerview.adapter = happyMoodAdapter
 
         observers()
@@ -42,6 +43,11 @@ class HappyMoodFragment : Fragment() {
             binding.happyProgressBar.animate().alpha(0f).duration = 1000
             happyMoodAdapter.sublist(it)
             binding.happyRecyclerview.animate().alpha(1f)
+        })
+        happyMoodViewModel.happyMusicErrorLiveData.observe(viewLifecycleOwner, {
+            it?.let {
+                Toast.makeText(requireActivity() , it , Toast.LENGTH_SHORT).show()
+            }
         })
     }
 }

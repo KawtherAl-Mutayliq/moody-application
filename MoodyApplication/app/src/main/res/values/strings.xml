@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">MoodyApplication</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_email"> Email Address</string>
@@ -21,12 +21,22 @@
     <string name="nofavorite" />
     <string name="isfavorite" />
     <string name="who_your_mood_now">Who Your Mood now</string>
-    <string name="search">Search</string>
-    <string name="logout">logout</string>
     <string name="favorite">favorite</string>
     <string name="share">Share …</string>
-    <string name="favorite_recyclerview">Favorite</string>
+    <string name="favorite_recyclerview">Add to Favorite</string>
     <string name="songName">TextView</string>
     <string name="songDes">TextView</string>
     <string name="delete_favorite">remove from favorite …</string>
+    <string name="search">search_item</string>
+    <string name="logout">logout_item</string>
+    <string name="rename_music">Rename Music</string>
+    <string name="name">Name</string>
+    <string name="name_plain_text" />
+    <string name="descripition">Description</string>
+    <string name="description_plain_text" />
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="rename">Rename</string>
+    <string name="download" tools:ignore="ExtraTranslation">download</string>
+
 </resources>

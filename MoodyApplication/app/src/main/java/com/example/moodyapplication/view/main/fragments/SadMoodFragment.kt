@@ -1,4 +1,4 @@
-package com.example.moodyapplication.view.main
+package com.example.moodyapplication.view.main.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -29,7 +29,7 @@ class SadMoodFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sadMoodAdapter = SadMoodAdapter(requireActivity())
+        sadMoodAdapter = SadMoodAdapter(requireActivity(), sadMoodViewModel)
         binding.sadmoodRecyclerview.adapter = sadMoodAdapter
 
         observers()

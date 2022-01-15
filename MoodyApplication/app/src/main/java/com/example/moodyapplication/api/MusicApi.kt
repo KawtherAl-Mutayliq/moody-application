@@ -2,7 +2,6 @@ package com.example.moodyapplication.api
 
 import com.example.moodyapplication.model.FavoriteMusic
 import com.example.moodyapplication.model.MusicModel
-import com.squareup.okhttp.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -29,7 +28,7 @@ interface MusicApi {
     @POST("/favoriteMusic/")
     suspend fun addFavorite(
       @Body favoriteBody: FavoriteMusic
-    ): Response<ResponseBody>
+    ): Response<FavoriteMusic>
 
 
     @DELETE("/favoriteMusic/{id}")
@@ -37,4 +36,9 @@ interface MusicApi {
         @Path("id") id : String
     ): Response<FavoriteMusic>
 
+    @PUT("/moody/{id}")
+    suspend fun updateMusicName(
+        @Path("id") id: String,
+        @Body musicModel: MusicModel
+    ): Response<MusicModel>
 }
