@@ -23,8 +23,8 @@ class FavoriteFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+        savedInstanceState: Bundle?): View {
+
         binding = FragmentFavoriteBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -35,7 +35,10 @@ class FavoriteFragment : Fragment() {
         favoriteAdapter = FavoriteAdater(requireActivity(), favoriteViewModel)
         binding.favoriteRecyclerview.adapter = favoriteAdapter
 
+        // call observe function
         observers()
+
+        // calling callFavorite function from api
         favoriteViewModel.callFavorite()
 
     }

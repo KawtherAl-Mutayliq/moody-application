@@ -37,26 +37,35 @@ class UpdateDialogFragment(private val musicId:String ,
 
 
 
+        // set text of music name and description in edit text
         binding.nameEditText.setText(name)
         binding.descriptionEditText.setText(description)
 
-
+        // calling observe function
         observers()
+
+        // calling music model
         updateViewModel.callMusic()
+
+        // button to save update data
         binding.okButton.setOnClickListener {
 
+            // set text of update name and description in edit text
             val name = binding.nameEditText.text.toString()
             val description = binding.descriptionEditText.text.toString()
             val musicModel = MusicModel(description,musicId, music,name, photo, type)
 
+            // update function from api
             updateViewModel.update(musicModel)
         }
 
+        // button to close dialog fragment
         binding.cancelButton.setOnClickListener {
             dismiss()
         }
     }
 
+    // function for observe data
     private fun observers(){
 
         updateViewModel.updateLiveData.observe(viewLifecycleOwner, {

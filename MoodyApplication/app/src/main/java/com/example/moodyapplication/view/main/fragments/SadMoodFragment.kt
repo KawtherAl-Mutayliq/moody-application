@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.moodyapplication.databinding.FragmentSadMoodBinding
 import com.example.moodyapplication.view.adapter.SadMoodAdapter
@@ -41,6 +42,12 @@ class SadMoodFragment : Fragment() {
             binding.sadmoodProgressBar.animate().alpha(0f).duration = 1000
             sadMoodAdapter.sublist(it)
             binding.sadmoodRecyclerview.animate().alpha(1f)
+        })
+
+        sadMoodViewModel.musicErrorLiveData.observe(viewLifecycleOwner, {
+            it?.let {
+                Toast.makeText(requireActivity() , it , Toast.LENGTH_SHORT).show()
+            }
         })
     }
 }

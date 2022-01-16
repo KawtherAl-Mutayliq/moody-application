@@ -31,6 +31,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // create progress dialog
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Loading...")
         progressDialog.setCancelable(false)
@@ -38,16 +39,20 @@ class RegisterActivity : AppCompatActivity() {
 
         supportActionBar!!.hide()
 
+        // condition for device version
+        // calling channel function for notification
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createChannel()
         }
 
+        // get create notification function from object of notification class
         createNotification.createNotification(this)
 
         binding.registerButton.setOnClickListener {
             val email = binding.registerEmailedittext.text.toString()
             val password = binding.registerpasswordEdittext.text.toString()
 
+            // condition to check if edit text of email and password not empty
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 if (validator.emailValidation(email)) {
                     if (validator.passwordValidation(password)) {
@@ -92,6 +97,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+        // navigate to login activity
         binding.gobackTextView.setOnClickListener {
             val intent = Intent(this , LoginActivity::class.java)
             startActivity(intent)
@@ -100,6 +106,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
 
+    // function for creating notification channel
     private fun createChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel =

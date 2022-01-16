@@ -70,6 +70,7 @@ class FavoriteAdater(val context: Context, val viewModel: FavoriteViewModel) :
 
             val position = adapterPosition
 
+            // intent for play music and take its info (title, description, photo)
             itemView.setOnClickListener {
 
                 viewModel.musicArrayList.postValue(differ.currentList)
@@ -89,10 +90,13 @@ class FavoriteAdater(val context: Context, val viewModel: FavoriteViewModel) :
 
        @SuppressLint("NotifyDataSetChanged")
        private fun showPopupMenu(view: View , item: FavoriteMusic) {
+
            val popupMenu = PopupMenu(context , view)
            popupMenu.inflate(R.menu.favoritepopup)
+
            popupMenu.setOnMenuItemClickListener {
                when (it.itemId) {
+                   // to share music url
                    R.id.share_favorite_item -> {
 
                        val link = item.music
@@ -103,6 +107,8 @@ class FavoriteAdater(val context: Context, val viewModel: FavoriteViewModel) :
 
                        true
                    }
+
+                   //delete item from favorite model
                    R.id.delete_favorite_item -> {
 
                        val favoriteMusic = mutableListOf<FavoriteMusic>()

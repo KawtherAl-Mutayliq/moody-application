@@ -22,8 +22,8 @@ class HappyMoodFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+        savedInstanceState: Bundle?): View {
+
        binding = FragmentHappyMoodBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -34,7 +34,10 @@ class HappyMoodFragment : Fragment() {
         happyMoodAdapter = HappyMusicAdapter(requireActivity(), happyMoodViewModel)
         binding.happyRecyclerview.adapter = happyMoodAdapter
 
+        // calling observe function
         observers()
+
+        // calling function from api
         happyMoodViewModel.callMusic()
     }
 

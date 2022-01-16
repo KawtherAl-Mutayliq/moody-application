@@ -51,11 +51,13 @@ class HappyMusicAdapter(val context: Context, val viewModel: HappyMusicViewModel
         differ.submitList(list)
     }
 
-   inner class HappyMusicHolder(val binding: MusicItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+   inner class HappyMusicHolder(val binding: MusicItemLayoutBinding) :RecyclerView.ViewHolder(binding.root) {
+
         fun bind(item: MusicModel){
             binding.nameTextView.text = item.name
             binding.artsTextView.text = item.description
             Glide.with(context).load(item.photo).into(binding.musicImageview)
+
             binding.menuImagbutton.setOnClickListener {
                 showPopupMenu(it, item)
             }
@@ -82,10 +84,12 @@ class HappyMusicAdapter(val context: Context, val viewModel: HappyMusicViewModel
     }
 
     private fun showPopupMenu(view: View, item: MusicModel) {
+
         val popupMenu = PopupMenu(context,view )
         popupMenu.inflate(R.menu.mainpopmenu)
         popupMenu.setOnMenuItemClickListener {
             when(it.itemId){
+
                 R.id.main_share_item_view ->{
 
                     val link = item.music
@@ -96,6 +100,7 @@ class HappyMusicAdapter(val context: Context, val viewModel: HappyMusicViewModel
                     true
                 }
                 R.id.main_favorite_item_view->{
+                    viewModel.addFavorite(item)
                     true
                 }
                 else -> true

@@ -16,6 +16,8 @@ const val CHANNEL_ID = "channel1"
 class CreateNotification {
 
 
+    // notification function to use it in more then activity
+
     @SuppressLint("UnspecifiedImmutableFlag")
     fun createNotification(context: Context) {
 

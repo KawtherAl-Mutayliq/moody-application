@@ -21,6 +21,7 @@ class FavoriteViewModel : ViewModel() {
     val musicArrayList = MutableLiveData<List<FavoriteMusic>>()
     val favoriteErrorLiveData = MutableLiveData<String>()
 
+    // call data of favorite model from api
     fun callFavorite(){
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -42,6 +43,7 @@ class FavoriteViewModel : ViewModel() {
         }
     }
 
+    // delete data from api
      fun deleteFavorite(music: FavoriteMusic) {
          viewModelScope.launch(Dispatchers.IO) {
              try {

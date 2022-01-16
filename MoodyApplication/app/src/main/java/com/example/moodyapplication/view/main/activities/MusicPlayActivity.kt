@@ -81,7 +81,9 @@ class MusicPlayActivity : AppCompatActivity() {
 
         supportActionBar!!.hide()
 
+        // get info from the intent
         position = intent.getIntExtra("position" , 0)
+
         list = intent.getParcelableArrayListExtra("list")!!
 
         val name = intent.getStringExtra("name")!!
@@ -89,39 +91,52 @@ class MusicPlayActivity : AppCompatActivity() {
         val photo = intent.getStringExtra("photo")!!
         val music = intent.getStringExtra("music")!!
 
+        // call media player function to play music
         initMediaPlayer(name , description , photo , music)
+
+        // call function for seekBar
         initializedSeekBar()
 
+        // set pause button on click listener and call pause function
         binding.pauseButton.setOnClickListener {
             pause()
         }
 
+        // set play button on click listener and call play function
         binding.playButton.setOnClickListener {
 
             play()
 
+            // this will check if no other media play will start music
             if (audioFocusRequest == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                 mediaPlayer.start()
             }
 
         }
+
+        // button for close activity and stop music
         binding.closeButton.setOnClickListener {
             finish()
             mediaPlayer.stop()
 
         }
+
+        // button for play next music
         binding.forwardButton.setOnClickListener {
             next()
         }
 
+        // button for play previous music
         binding.rewindButton.setOnClickListener {
             previous()
         }
 
+        // if music finish will pause music
         mediaPlayer.setOnCompletionListener{
             pause()
         }
 
+        // change seekbar position will change music current position
         binding.musicSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar? , progress: Int , fromUser: Boolean) {
 
@@ -162,6 +177,7 @@ class MusicPlayActivity : AppCompatActivity() {
 
     }
 
+    // function to initialize SeekBar
     private fun initializedSeekBar() {
 
         binding.musicSeekBar.max = mediaPlayer.duration / 1000
@@ -176,6 +192,7 @@ class MusicPlayActivity : AppCompatActivity() {
 
                         Log.d(TAG , "current position $currentPosition")
 
+                        // take music time and put it in text view
                         out = String.format(
                             "%02d:%02d" ,
                             binding.musicSeekBar.progress / 60 ,
@@ -184,8 +201,8 @@ class MusicPlayActivity : AppCompatActivity() {
 
                         binding.startTime.text = out
 
-                        difference =
-                            mediaPlayer.duration / 1000 - mediaPlayer.currentPosition / 1000
+                        // decrease music time while it is play and put it in text view
+                        difference = mediaPlayer.duration / 1000 - mediaPlayer.currentPosition / 1000
                         out2 = String.format(
                             "%02d:%02d" ,
                             difference / 60 ,
@@ -200,12 +217,14 @@ class MusicPlayActivity : AppCompatActivity() {
             })
     }
 
+    // function to start play music
     private fun play() {
         mediaPlayer.start()
         binding.playButton.isVisible = false
         binding.pauseButton.isVisible = true
     }
 
+    // function to stop playing of music
     private fun pause() {
 
         mediaPlayer.pause()
@@ -213,8 +232,8 @@ class MusicPlayActivity : AppCompatActivity() {
         binding.pauseButton.isVisible = false
     }
 
+    // function to play previous music
     private fun previous() {
-
 
         if (position <= 0) {
             position = list.size - 1
@@ -230,6 +249,7 @@ class MusicPlayActivity : AppCompatActivity() {
         )
     }
 
+    // function to play next music
     private fun next() {
 
         if (position < list.size - 1) {
@@ -247,6 +267,7 @@ class MusicPlayActivity : AppCompatActivity() {
         )
     }
 
+    // function to initialize media player
     private fun initMediaPlayer(
         name: String ,
         description: String ,

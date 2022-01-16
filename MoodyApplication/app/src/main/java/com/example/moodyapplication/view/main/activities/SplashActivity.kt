@@ -17,21 +17,28 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        // initialized service repository
         ApiServiceRepository.init(this)
+
+        // hide action bar of splash activity
         supportActionBar!!.hide()
 
+        // function to open main activity
         fun startMainActivity() {
             val intent = Intent(this , MainActivity::class.java)
             startActivity(intent)
             finish()
         }
 
+        // function to open login activity
         fun startLogInFragment() {
             val intent = Intent(this , LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
 
+        // condition for start app
+        // if user is login will open main activity if not will open login activity
         Handler().postDelayed({
             sharedPref = getSharedPreferences("shared", Context.MODE_PRIVATE)
 

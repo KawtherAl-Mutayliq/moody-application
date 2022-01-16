@@ -47,7 +47,7 @@ class PlaylistFragment : Fragment() {
         musicAdapter = MusicAdapter(requireActivity(), musicViewModel)
         binding.playlistRecyclerView.adapter = musicAdapter
 
-
+        // set option menu for main fragment
         setHasOptionsMenu(true)
 
         observers()
@@ -75,27 +75,35 @@ class PlaylistFragment : Fragment() {
 
         val id = item.itemId
 
+        // logout item
         if (id == R.id.logout_item){
 
+            // build dialog to confirm user if will logout or not
             val buildDialog = AlertDialog.Builder(requireActivity())
 
+            // set message dialog
             buildDialog.setMessage("Are you sure to logout ?")
 
+            // set positive button for dialog
             buildDialog.setPositiveButton("Yes"){ _ , _ ->
             FirebaseAuth.getInstance().signOut()
                 sharedPref = requireActivity().getSharedPreferences("shared", Context.MODE_PRIVATE)
                 sharedPrefEditor = sharedPref.edit()
                 sharedPrefEditor.clear()
                 sharedPrefEditor.commit()
+
                 val intent = Intent(requireActivity() ,LoginActivity ::class.java)
                 startActivity(intent)
+                requireActivity().finish()
             }
 
+            // set negative button for dialog
             buildDialog.setNegativeButton("No"){ _ , _ ->
             }
 
             // Create the AlertDialog
             val alertDialog: AlertDialog = buildDialog.create()
+
             // Set other dialog properties
             alertDialog.setCancelable(false)
             alertDialog.show()
@@ -105,7 +113,7 @@ class PlaylistFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-
+    // function to show search view and use filter to search by title and description
     override fun onCreateOptionsMenu(menu: Menu , inflater: MenuInflater) {
         requireActivity().menuInflater.inflate(R.menu.actionbar, menu)
 

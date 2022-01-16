@@ -23,6 +23,7 @@ class PlaylistViewModel: ViewModel() {
     val musicErrorLiveData = MutableLiveData<String>()
 
 
+    // call data of all music types from api
     fun callMusic(){
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -44,7 +45,7 @@ class PlaylistViewModel: ViewModel() {
         }
     }
 
-
+    // add music into favorite model
     fun addFavorite(musicModel: MusicModel) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -68,7 +69,7 @@ class PlaylistViewModel: ViewModel() {
         }
     }
 
-
+    // change name and description of music in api
     fun update(musicModel: MusicModel){
         viewModelScope.launch(Dispatchers.IO) {
             try {

@@ -99,6 +99,7 @@ class RomanceMusicAdapter(val context: Context, val viewModel: RomanceMusicViewM
                     true
                 }
                 R.id.main_favorite_item_view ->{
+                    viewModel.addFavorite(item)
                     true
                 }
                 else -> true

@@ -23,8 +23,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // make object of fragment adapter
         adapter = FragmentAdapter(supportFragmentManager , lifecycle)
         binding.viewPager.adapter = adapter
+
+        // but titles and icons for each fragment in tablayout
         TabLayoutMediator(binding.tabLayout , binding.viewPager) { tab , position ->
             when (position) {
                 0 -> {

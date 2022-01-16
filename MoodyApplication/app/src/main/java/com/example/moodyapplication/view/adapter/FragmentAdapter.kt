@@ -11,7 +11,7 @@ class FragmentAdapter(fm: FragmentManager, lifecycle: Lifecycle) : FragmentState
     override fun getItemCount(): Int {
         return 6
     }
-
+// for tabLayout to put fragment in positions
     override fun createFragment(position: Int): Fragment {
         return when(position){
             0 -> PlaylistFragment()

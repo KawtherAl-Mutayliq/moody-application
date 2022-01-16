@@ -37,6 +37,7 @@ class LoginActivity : AppCompatActivity(){
         setContentView(binding.root)
 
 
+        // create progress dialog
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Loading...")
         progressDialog.setCancelable(false)
@@ -44,24 +45,32 @@ class LoginActivity : AppCompatActivity(){
 
         supportActionBar!!.hide()
 
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        // condition for device version
+        // calling channel function for notification
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     createChannel()
                 }
 
+        // get create notification function from object of notification class
          createNotification.createNotification(this)
 
+        // login button
         binding.loginButton.setOnClickListener {
             val email: String = binding.loginEmailedittext.text.toString()
             val password: String = binding.loginpasswordEdittext.text.toString()
 
+            // condition to check if edit text of email and password not empty
             if (email.isNotEmpty() && password.isNotEmpty()) {
+
+                // showing progress dialog
                 progressDialog.show()
                 FirebaseAuth.getInstance()
                     .signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener() {
+
                         if (it.isSuccessful) {
 
+                            // shared preference editor
                             sharedPrefEditor = sharedPref.edit()
                             sharedPrefEditor.putBoolean("login", true)
                             sharedPrefEditor.commit()
@@ -82,6 +91,7 @@ class LoginActivity : AppCompatActivity(){
             }
         }
 
+        // navigate to register activity if the user do not have account
         binding.createAccountTextview.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
@@ -89,10 +99,11 @@ class LoginActivity : AppCompatActivity(){
 
     }
 
+    // function for creating notification channel
     private fun createChannel() {
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel =
-                NotificationChannel(CHANNEL_ID , "KOD Dev" , NotificationManager.IMPORTANCE_LOW)
+            val channel = NotificationChannel(CHANNEL_ID , "KOD Dev" , NotificationManager.IMPORTANCE_LOW)
             notificationManager = getSystemService(NotificationManager::class.java)
             notificationManager.createNotificationChannel(channel)
         }
