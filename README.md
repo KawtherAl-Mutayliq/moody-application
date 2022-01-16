@@ -28,9 +28,8 @@ I begain my plan with designing the layouts in figma to see what the app look li
 If have some obstacles at a certain point I serach about that point. if I do not find it, asked classmates or instructional team.
 
 ## Unsolved problems:
-
+- media player notification
 
 ## Favorite functions:
-
- 
+music player activity, seekBar
  
