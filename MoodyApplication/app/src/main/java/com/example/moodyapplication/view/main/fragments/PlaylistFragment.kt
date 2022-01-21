@@ -16,9 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import android.content.Intent
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.example.moodyapplication.view.identity.LoginActivity
-import com.example.moodyapplication.view.identity.sharedPref
-import com.example.moodyapplication.view.identity.sharedPrefEditor
+import com.example.moodyapplication.view.identity.*
 
 
 private const val TAG = "PlaylistFragment"
@@ -109,6 +107,12 @@ class PlaylistFragment : Fragment() {
             alertDialog.show()
 
             return true
+        } else if (id == R.id.profile_item){
+
+            val intent = Intent(requireActivity(), ProfileActivity::class.java)
+            startActivity(intent)
+
+            return true
         }
         return super.onOptionsItemSelected(item)
     }
@@ -132,6 +136,12 @@ class PlaylistFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                musicAdapter.sublist(
+                    musicList.filter {
+                        it.name.lowercase().contains(newText!!.lowercase()) or
+                                it.description.lowercase().contains(newText.lowercase())
+                    }
+                )
                 return true
             }
 

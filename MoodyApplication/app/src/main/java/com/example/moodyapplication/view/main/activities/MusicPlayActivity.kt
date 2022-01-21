@@ -131,9 +131,9 @@ class MusicPlayActivity : AppCompatActivity() {
             previous()
         }
 
-        // if music finish will pause music
+        // if music finish will play next music
         mediaPlayer.setOnCompletionListener{
-            pause()
+            next()
         }
 
         // change seekbar position will change music current position

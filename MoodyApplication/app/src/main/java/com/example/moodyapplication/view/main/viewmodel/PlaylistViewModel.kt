@@ -21,6 +21,7 @@ class PlaylistViewModel: ViewModel() {
     val updateLiveData = MutableLiveData<String>()
     val updateErrorLiveData = MutableLiveData<String>()
     val musicErrorLiveData = MutableLiveData<String>()
+    val musicSuccessLiveData = MutableLiveData<String>()
 
 
     // call data of all music types from api
@@ -68,6 +69,7 @@ class PlaylistViewModel: ViewModel() {
             }
         }
     }
+
 
     // change name and description of music in api
     fun update(musicModel: MusicModel){

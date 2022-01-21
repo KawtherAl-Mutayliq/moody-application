@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">MoodyApplication</string>
+    <string name="app_name">Moody</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_email"> Email Address</string>
     <string name="login_password">Password</string>
@@ -15,8 +15,8 @@
     <string name="_0_00">0:00</string>
     <string name="_1_00">-0:00</string>
     <string name="playbutton">ToggleButton</string>
-    <string name="off" />
-    <string name="on" />
+    <string name="off"> press to edit</string>
+    <string name="on" >Edit</string>
     <string name="optionbutton">ToggleButton</string>
     <string name="nofavorite" />
     <string name="isfavorite" />
@@ -28,7 +28,7 @@
     <string name="songDes">TextView</string>
     <string name="delete_favorite">remove from favorite …</string>
     <string name="search">search_item</string>
-    <string name="logout">logout_item</string>
+    <string name="logout">logout</string>
     <string name="rename_music">Rename Music</string>
     <string name="name">Name</string>
     <string name="name_plain_text" />
@@ -38,5 +38,11 @@
     <string name="cancel">CANCEL</string>
     <string name="rename">Rename</string>
     <string name="download" tools:ignore="ExtraTranslation">download</string>
+    <string name="firstName">First Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="confirmpassword">Confirm Password</string>
+    <string name="edit_button">save changes</string>
+    <string name="edit">edit</string>
+    <string name="profile">your profile</string>
 
 </resources>

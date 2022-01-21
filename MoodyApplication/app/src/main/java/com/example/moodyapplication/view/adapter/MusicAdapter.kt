@@ -17,19 +17,28 @@ import com.bumptech.glide.Glide
 import com.example.moodyapplication.R
 import com.example.moodyapplication.databinding.MusicItemLayoutBinding
 import com.example.moodyapplication.model.MusicModel
-import com.example.moodyapplication.view.main.fragments.UpdateDialogFragment
 import com.example.moodyapplication.view.main.viewmodel.PlaylistViewModel
 import kotlin.collections.ArrayList
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import android.app.DownloadManager
+import android.content.SharedPreferences
+import android.widget.Toast
+import com.example.moodyapplication.model.FavoriteMusic
+import com.example.moodyapplication.view.identity.USERID
+import com.example.moodyapplication.view.identity.sharedPref
+import com.example.moodyapplication.view.identity.sharedPrefEditor
 import com.example.moodyapplication.view.main.activities.MusicPlayActivity
+import com.example.moodyapplication.view.main.viewmodel.FavoriteViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 
 private const val TAG = "MusicAdapter"
 
 class MusicAdapter(val context: Context , val viewModel: PlaylistViewModel) :
     RecyclerView.Adapter<MusicAdapter.MusicHolder>() {
+
+
     private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MusicModel>() {
         override fun areItemsTheSame(oldItem: MusicModel , newItem: MusicModel): Boolean {
             return oldItem.id == newItem.id
@@ -113,20 +122,20 @@ class MusicAdapter(val context: Context , val viewModel: PlaylistViewModel) :
                 when (it.itemId) {
 
                     // rename title and description of item
-                    R.id.rename_item -> {
-                        val manager: FragmentManager =
-                            (context as AppCompatActivity).supportFragmentManager
-                        val fragmentDialog = UpdateDialogFragment(
-                            item.id ,
-                            item.name ,
-                            item.description ,
-                            item.music ,
-                            item.photo ,
-                            item.type
-                        )
-                        fragmentDialog.show(manager , "dialog fragment")
-                        true
-                    }
+//                    R.id.rename_item -> {
+//                        val manager: FragmentManager =
+//                            (context as AppCompatActivity).supportFragmentManager
+//                        val fragmentDialog = UpdateDialogFragment(
+//                            item.id ,
+//                            item.name ,
+//                            item.description ,
+//                            item.music ,
+//                            item.photo ,
+//                            item.type
+//                        )
+//                        fragmentDialog.show(manager , "dialog fragment")
+//                        true
+//                    }
 
                     // download music using DownloadManager
                     R.id.download_item -> {

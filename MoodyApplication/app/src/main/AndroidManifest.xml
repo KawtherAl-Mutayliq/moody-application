@@ -41,6 +41,11 @@
             android:name=".view.identity.RegisterActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".view.identity.ProfileActivity"
+            android:exported="true"
+            android:label="Your Profile"/>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

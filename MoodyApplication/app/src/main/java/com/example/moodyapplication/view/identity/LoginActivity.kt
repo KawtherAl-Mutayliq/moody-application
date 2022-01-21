@@ -27,6 +27,7 @@ private val createNotification = CreateNotification()
 
 lateinit var sharedPref: SharedPreferences
 lateinit var sharedPrefEditor: SharedPreferences.Editor
+const val USERID =" userId"
 
 class LoginActivity : AppCompatActivity(){
 
@@ -51,8 +52,6 @@ class LoginActivity : AppCompatActivity(){
                     createChannel()
                 }
 
-        // get create notification function from object of notification class
-         createNotification.createNotification(this)
 
         // login button
         binding.loginButton.setOnClickListener {
@@ -72,8 +71,12 @@ class LoginActivity : AppCompatActivity(){
 
                             // shared preference editor
                             sharedPrefEditor = sharedPref.edit()
+                            sharedPrefEditor.putString(USERID, FirebaseAuth.getInstance().uid.toString())
                             sharedPrefEditor.putBoolean("login", true)
                             sharedPrefEditor.commit()
+
+                            // get create notification function from object of notification class
+                            createNotification.createNotification(this)
 
                             Log.d(TAG, "shared $sharedPref")
                             Toast.makeText(this, "Login successfully", Toast.LENGTH_SHORT).show()

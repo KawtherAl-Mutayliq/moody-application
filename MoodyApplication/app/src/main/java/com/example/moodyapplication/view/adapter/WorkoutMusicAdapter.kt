@@ -56,27 +56,29 @@ class WorkoutMusicAdapter(val context: Context, val viewModel: WorkoutMusicViewM
             binding.nameTextView.text = item.name
             binding.artsTextView.text = item.description
             Glide.with(context).load(item.photo).into(binding.musicImageview)
+
+            val position = adapterPosition
+
+            itemView.setOnClickListener {
+
+                viewModel.musicArrayList.postValue(differ.currentList)
+
+                val intent= Intent(context , MusicPlayActivity::class.java)
+
+                intent.putExtra("name", item.name)
+                intent.putExtra("description", item.description)
+                intent.putExtra("photo", item.photo)
+                intent.putExtra("music", item.music)
+                intent.putParcelableArrayListExtra("list",(ArrayList<Parcelable>(differ.currentList)))
+                intent.putExtra("position" , position)
+
+                context.startActivity(intent)
+
+            }
+
             binding.menuImagbutton.setOnClickListener {
                 showPopupMenu(it, item)
 
-                val position = adapterPosition
-
-                itemView.setOnClickListener {
-
-                    viewModel.musicArrayList.postValue(differ.currentList)
-
-                    val intent= Intent(context , MusicPlayActivity::class.java)
-
-                    intent.putExtra("name", item.name)
-                    intent.putExtra("description", item.description)
-                    intent.putExtra("photo", item.photo)
-                    intent.putExtra("music", item.music)
-                    intent.putParcelableArrayListExtra("list",(ArrayList<Parcelable>(differ.currentList)))
-                    intent.putExtra("position" , position)
-
-                    context.startActivity(intent)
-
-                }
             }
         }
     }

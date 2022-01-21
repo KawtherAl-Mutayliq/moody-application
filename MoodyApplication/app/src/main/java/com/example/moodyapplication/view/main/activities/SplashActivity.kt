@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Handler
 import com.example.moodyapplication.R
 import com.example.moodyapplication.repository.ApiServiceRepository
+import com.example.moodyapplication.repository.FireBaseRepository
 import com.example.moodyapplication.view.identity.LoginActivity
 import com.example.moodyapplication.view.identity.sharedPref
 
@@ -19,6 +20,7 @@ class SplashActivity : AppCompatActivity() {
 
         // initialized service repository
         ApiServiceRepository.init(this)
+        FireBaseRepository.init(this)
 
         // hide action bar of splash activity
         supportActionBar!!.hide()

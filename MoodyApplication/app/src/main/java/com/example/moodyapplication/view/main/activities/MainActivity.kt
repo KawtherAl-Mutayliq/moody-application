@@ -32,27 +32,27 @@ class MainActivity : AppCompatActivity() {
             when (position) {
                 0 -> {
                     tab.setIcon(R.drawable.ic_baseline_music_note_24)
-                    tab.text = "music"
+                    tab.text = "All Music"
                 }
                 1 -> {
                     tab.setIcon(R.drawable.sad)
-                    tab.text = "sad"
+                    tab.text = "Sad"
                 }
                 2 -> {
                     tab.setIcon(R.drawable.happy)
-                    tab.text = "happy"
+                    tab.text = "Happy"
                 }
                 3 -> {
                     tab.setIcon(R.drawable.novel)
-                    tab.text = "romance"
+                    tab.text = "Romance"
                 }
                 4 -> {
                     tab.setIcon(R.drawable.workout)
-                    tab.text = "workout"
+                    tab.text = "Workout"
                 }
                 5 -> {
                     tab.setIcon(R.drawable.ic_baseline_favorite_24)
-                    tab.text = "favorite"
+                    tab.text = "Favorite"
                 }
             }
         }.attach()

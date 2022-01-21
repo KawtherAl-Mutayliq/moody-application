@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.moodyapplication.databinding.FragmentFavoriteBinding
+import com.example.moodyapplication.model.FavoriteMusic
 import com.example.moodyapplication.view.adapter.FavoriteAdater
+import com.example.moodyapplication.view.identity.USERID
+import com.example.moodyapplication.view.identity.sharedPref
 import com.example.moodyapplication.view.main.viewmodel.FavoriteViewModel
 
 private const val TAG = "FavoriteFragment"
@@ -20,7 +23,8 @@ class FavoriteFragment : Fragment() {
     private val favoriteViewModel: FavoriteViewModel by activityViewModels()
 
     private lateinit var binding: FragmentFavoriteBinding
-
+    private var list = listOf<FavoriteMusic>()
+    private var userId = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View {
@@ -44,11 +48,20 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun observers(){
-        favoriteViewModel.favoriteLiveData.observe(viewLifecycleOwner, {
-            binding.favoriteProgressBar.animate().alpha(0f).duration = 1000
-            favoriteAdapter.sublist(it)
-            Log.d(TAG , favoriteAdapter.sublist(it).toString())
-            binding.favoriteRecyclerview.animate().alpha(1f)
+        favoriteViewModel.favoriteLiveData.observe(viewLifecycleOwner, { it ->
+
+            userId = sharedPref.getString(USERID, "")!!
+
+            it?.let {
+                val favoriteList = it.filter {
+                    userId == it.userId
+                }
+                favoriteAdapter.sublist(favoriteList)
+                binding.favoriteProgressBar.animate().alpha(0f).duration = 100
+                binding.favoriteRecyclerview.animate().alpha(1f)
+            }
+
+          //  favoriteViewModel.favoriteLiveData.postValue(null)
         })
 
         favoriteViewModel.favoriteErrorLiveData.observe(viewLifecycleOwner, {
